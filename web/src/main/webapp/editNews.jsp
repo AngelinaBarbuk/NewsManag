@@ -20,6 +20,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <link href="http://bootstrap-3.ru/examples/dashboard/dashboard.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/image_preview.css">
 </head>
 <body>
 
@@ -31,18 +33,27 @@
             <ul class="nav nav-sidebar">
                 <li class="sidebar-brand"> <h3>News Menu</h3></li>
                 <li><a href="/web/controller?command=GetNewsList">News List</a></li>
-                <li><a href="#">Add News</a></li>
+                <li><a href="/web/controller?command=AddNewsForm">Edit News</a></li>
             </ul>
         </div>
         <div class="col-sm-8 col-md-offset-2 main">
             <h2 class="sub-header">Add News</h2>
             <div class="container-fluid" >
-                <form method="post" action="/web/controller"  role="form">
+                <form method="post" action="/web/controller"  role="form" enctype="multipart/form-data" class="feedback-form-1">
                     <div class="col-sm-4">
-                        <div class="form-group row">
-                            <label for="image">Image:</label>
-                            <input type="file" class="form-control-image" id="image" name="image" value="${news.getImageURI()}"/>
-                        </div>
+                        <fieldset>
+                            <div class="input-file-row-1">
+
+                                <div class="upload-file-container">
+                                    <img id="loadedImg" src="${news.getImageURI()}" alt="" />
+                                    <div class="upload-file-container-text">
+                                        <span>Add<br />photo</span>
+                                        <input type="file" name="image" class="photo" id="image"  />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </fieldset>
 
                     </div>
 
@@ -81,5 +92,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="../../dist/js/bootstrap.min.js"></script>
 <script src="../../assets/js/docs.min.js"></script>
+
+<script>
+    function readURL(input) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#loadedImg').attr('src', e.target.result);
+                //document.getElementById('#loadedImg').src=e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $('#image').change(function(){
+        readURL(this);
+    });
+</script>
 </body>
 </html>

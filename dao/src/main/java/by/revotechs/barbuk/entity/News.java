@@ -2,7 +2,7 @@ package by.revotechs.barbuk.entity;
 
 import java.awt.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by VVV on 12.07.2016.
@@ -26,6 +26,15 @@ public class News implements Serializable {
     }
 
     public News(String title, String author, Date date, String content, String imageURI) {
+        this.title = title;
+        this.author = author;
+        this.date = date;
+        this.content = content;
+        this.imageURI = imageURI;
+    }
+
+    public News(int id, String title, String author, java.sql.Date date, String content, String imageURI) {
+        this.id=id;
         this.title = title;
         this.author = author;
         this.date = date;

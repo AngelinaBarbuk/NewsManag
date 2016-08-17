@@ -38,6 +38,9 @@ public class NewsService {
     public List<News> getNewsList() throws PropertyVetoException, SQLException, IOException {
         return dao.getListNews();
     }
+    public void editNews(News news) throws PropertyVetoException, SQLException, IOException {
+        dao.changeNews(news);
+    }
 
     public static void main(String args[]) throws PropertyVetoException, IOException, SQLException {
         List<News> list= getInstance().getNewsList();

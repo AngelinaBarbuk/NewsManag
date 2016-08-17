@@ -13,11 +13,11 @@ import java.util.*;
 public class NewsDAOImpl implements NewsDAO<News>{
 
     public static final String ADD_NEWS = "INSERT INTO NEWS_LIST (AUTHOR, TITLE, CONTENT, CREATE_DATE, IMAGE_URI) VALUES(?,?,?,?,?)";
-    public static final String GET_ALL = "SELECT l.ID, a.AUTHOR, l.TITLE, l.CONTENT, l.CREATE_DATE, l.IMAGE_URI  FROM NEWS_LIST l INNER JOIN AUTHORS a ON l.AUTHOR=a.ID";
+    public static final String GET_ALL = "SELECT l.ID, a.AUTHOR, l.TITLE, l.CONTENT, l.CREATE_DATE, l.IMAGE_URI  FROM NEWS_LIST l INNER JOIN AUTHORS a ON l.AUTHOR=a.ID ORDER BY l.CREATE_DATE DESC ";
     public static final String ADD_AUTHOR = "INSERT INTO AUTHORS (AUTHOR) VALUES(?)";
     public static final String DELETE_NEWS = "DELETE FROM NEWS_LIST WHERE ID=?";
     public static final String GET_AUTHOR_ID = "SELECT ID FROM AUTHORS WHERE AUTHOR LIKE ?";
-    public static final String CHANGE_NEWS = "UPDATE NEWS_LIST SET TITLE=?, CONTENT=?, CREATE_DATE=?, IMAGE=? WHERE ID=?";
+    public static final String CHANGE_NEWS = "UPDATE NEWS_LIST SET TITLE=?, CONTENT=?, CREATE_DATE=?, IMAGE_URI=? WHERE ID=?";
 
 
     public NewsDAOImpl(){
