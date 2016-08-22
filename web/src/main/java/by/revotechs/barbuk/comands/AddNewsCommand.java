@@ -14,6 +14,7 @@ import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Locale;
 
 import static by.revotechs.barbuk.ImageService.uploadImage;
 
@@ -38,6 +39,7 @@ public class AddNewsCommand implements ActionCommand {
         if(date==null)
             date= new Date(System.currentTimeMillis());
         String imgPath=  ImageService.uploadImage(request,title,date);
+
         try {
             NewsService.getInstance().addNews(new News(title,author,date,content,imgPath));
             session.setAttribute("newsList",NewsService.getInstance().getNewsList());

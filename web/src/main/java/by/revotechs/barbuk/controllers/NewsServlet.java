@@ -74,6 +74,9 @@ public class NewsServlet extends HttpServlet {
         // определение команды, пришедшей из JSP
         String action = request.getParameter("command");
         logger.debug("controller recieved parameter: " +action);
+
+
+         //request.getSession().setAttribute("language",request.getLocale());
 		/*
 		 * вызов реализованного метода execute() и передача параметров
 		 * классу-обработчику конкретной команды
@@ -108,6 +111,9 @@ public class NewsServlet extends HttpServlet {
                 break;
             case "EditNews":
                 command = new EditNewsCommand();
+                break;
+            case "ChangeLang":
+                command = new ChangeLangCommand();
                 break;
             default:
                 command = new ShowNewsListCommand();
