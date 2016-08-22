@@ -2,6 +2,7 @@ package by.revotechs.barbuk.controllers;
 
 import by.revotechs.barbuk.comands.*;
 import org.apache.log4j.Logger;
+import org.omg.CORBA.Request;
 
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Locale;
 
 @MultipartConfig(location="/DBImages", fileSizeThreshold=1024*1024, maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 public class NewsServlet extends HttpServlet {
@@ -75,6 +77,18 @@ public class NewsServlet extends HttpServlet {
         String action = request.getParameter("command");
         logger.debug("controller recieved parameter: " +action);
 
+
+        String lang = request.getParameter("lang");
+        if(lang!=null) {
+            switch (lang) {
+                case "en":
+                    request.getSession().setAttribute("language", new Locale("en_US"));
+                    break;
+                default:
+                    request.getSession().setAttribute("language", new Locale("ru_RU"));
+                    break;
+            }
+        }
 
          //request.getSession().setAttribute("language",request.getLocale());
 		/*

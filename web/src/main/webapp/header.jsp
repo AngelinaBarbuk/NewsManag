@@ -17,7 +17,6 @@
             $("#ru").onclick= function () {
                 ${language}="ru_RU";
             }
-
     </script>
 </head>
 <body>
@@ -29,13 +28,13 @@
         
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><form method="POST">
+                <li><form method="GET">
                     <input type="hidden" name="lang" value="en">
                     <input type="hidden" name="action" value="ChangeLang">
                     <input type="submit" value="En">
                 </form>
-                    <a href="#" id="en">En</a></li>
-                <li><a href="#" id="ru">Ru</a></li>
+                    <a href="/web/controller?lang=en" id="en">En</a></li>
+                <li><a href="/web/controller?lang=ru" id="ru">Ru</a></li>
             </ul>
         </div>
     </div>
